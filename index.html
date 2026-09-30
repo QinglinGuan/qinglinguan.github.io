@@ -120,7 +120,9 @@
             text-decoration: none;
         }
         
-        .btn-x { background-color: #000; }
+        .btn-ins { 
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+        }
         .btn-xhs { background-color: #ff2442; }
 
         /* 中间主内容区 */
@@ -309,11 +311,21 @@
         </div>
         
         <div class="contact-links">
-            <a href="mailto:your.email@gmail.com"><i class="fa-regular fa-envelope"></i> your.email@gmail.com</a>
-            <a href="#"><i class="fa-solid fa-graduation-cap"></i> Google Scholar</a>
+            <!-- 邮箱链接，注意保留 mailto: 前缀 -->
+            <a href="mailto:tsinglinguan@gmail.com"><i class="fa-regular fa-envelope"></i> tsinglinguan@gmail.com</a>
             
-            <a href="#" class="btn-social btn-x"><i class="fa-brands fa-x-twitter"></i> Follow @your_handle</a>
-            <a href="#" class="btn-social btn-xhs"> 小红书 Follow 你的名字</a>
+            <!-- Google Scholar 链接 -->
+            <a href="https://scholar.google.com/citations?user=你的Google Scholar ID" target="_blank"><i class="fa-solid fa-graduation-cap"></i> Google Scholar</a>
+            
+            <!-- Instagram 按钮 (加入了 target="_blank" 表示在新标签页打开) -->
+            <a href="https://www.instagram.com/tsinglinnn?stkn=d3k5dGt0aTh1eHk1&utm_source=qr" class="btn-social btn-ins" target="_blank">
+                <i class="fa-brands fa-instagram"></i> Follow @tsinglinnn
+            </a>
+
+            <!-- 小红书 按钮 -->
+            <a href="https://xhslink.cn/o/AAPufFf9bRY" class="btn-social btn-xhs" target="_blank">
+                小红书 Follow 关青霖
+            </a>
         </div>
     </aside>
 
