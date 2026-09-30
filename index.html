@@ -150,11 +150,31 @@
             font-size: 14px;
             font-weight: 500;
             transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            background: none;
         }
 
         .nav-item.active {
             background-color: var(--accent-color);
             color: white;
+        }
+
+        /* 标签页内容控制 */
+        .tab-content {
+            display: none; /* 默认隐藏所有内容 */
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: flex; /* 显示激活的内容 */
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* 内容卡片 */
@@ -279,13 +299,13 @@
     
     <!-- 左侧个人信息 -->
     <aside class="sidebar-left">
-        <!-- 替换 src 为你的头像链接 -->
-        <img src="https://via.placeholder.com/240" alt="Profile Picture" class="profile-img">
-        <h1 class="name">Your Name 你的名字</h1>
-        <div class="pronouns">PRONOUNS / HERE</div>
+        <!-- 注意这里的 src，后面会讲解如何配置本地图片 -->
+        <img src="images/profile.jpg" alt="Profile Picture" class="profile-img" onerror="this.src='https://via.placeholder.com/240'">
+        <h1 class="name">Qinglin Guan</h1>
+        <div class="pronouns">HE / HIM</div>
         <div class="title-info">
-            <p>Title / Position</p>
-            <p>University / Institution Name</p>
+            <p>PhD Student</p>
+            <p>University of Cambridge</p>
         </div>
         
         <div class="contact-links">
@@ -299,65 +319,59 @@
 
     <!-- 主内容区 -->
     <main class="main-content">
-        <!-- 导航栏 -->
+        <!-- 导航栏：加入了 onclick 事件 -->
         <nav class="navbar">
-            <a href="#" class="nav-item active">Home</a>
-            <a href="#" class="nav-item">Experience</a>
-            <a href="#" class="nav-item">Beyond</a>
+            <button class="nav-item active" onclick="switchTab('tab-home', this)">Home</button>
+            <button class="nav-item" onclick="switchTab('tab-experience', this)">Experience</button>
+            <button class="nav-item" onclick="switchTab('tab-beyond', this)">Beyond</button>
         </nav>
 
-        <!-- About Me 卡片 -->
-        <section class="card">
-            <h2 class="section-title">About Me</h2>
-            <p>I work on [Your Research Area], developing [Your Specific Focus] that explain model decisions, guide data curation, and improve training.</p>
-            <p>I am a [Year] student at <a href="#">Your University</a>, advised by <a href="#">Advisor Name</a>.</p>
-            <p>I obtained my [Previous Degree] at [Previous Univ]. I'm always happy to connect and collaborate 😃. Feel free to reach out via email or Twitter.</p>
-        </section>
+        <!-- 标签页 1：Home -->
+        <div id="tab-home" class="tab-content active">
+            <!-- About Me 卡片 -->
+            <section class="card">
+                <h2 class="section-title">About Me</h2>
+                <p>I am an incoming PhD student in Engineering at the University of Cambridge, as a member of King's College.</p>
+                <p>My research focuses on bioelectronics and neuroengineering. I am particularly interested in utilizing electroencephalography (EEG) and closed-loop systems, integrated with artificial intelligence, to record and analyze neural electrical activity and regulate therapeutic electrical stimulation.</p>
+            </section>
 
-        <!-- Publications 卡片 -->
-        <section class="card">
-            <h2 class="section-title">Publications</h2>
-            
-            <!-- 论文 1 -->
-            <div class="publication">
-                <!-- 替换 src 为论文缩略图 -->
-                <img src="https://via.placeholder.com/160x90" alt="Paper Thumbnail" class="pub-img">
-                <div class="pub-info">
-                    <h3>Paper Title: Subtitle of Your Awesome Research Work</h3>
-                    <div class="pub-authors"><b>Your Name</b>, Co-author 1, Co-author 2</div>
-                    <div class="pub-links">
-                        <a href="#">Preprint</a>
-                        <a href="#">[ pdf ]</a>
+            <!-- Publications 卡片 -->
+            <section class="card">
+                <h2 class="section-title">Publications</h2>
+                <div class="publication">
+                    <img src="images/paper1.jpg" alt="Paper Thumbnail" class="pub-img" onerror="this.src='https://via.placeholder.com/160x90'">
+                    <div class="pub-info">
+                        <h3>Your Paper Title Here</h3>
+                        <div class="pub-authors"><b>Qinglin Guan</b>, Co-author 1</div>
+                        <div class="pub-links">
+                            <a href="#">Preprint</a>
+                            <a href="#">[ pdf ]</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
+        </div>
 
-            <!-- 论文 2 -->
-            <div class="publication">
-                <img src="https://via.placeholder.com/160x90" alt="Paper Thumbnail" class="pub-img">
-                <div class="pub-info">
-                    <h3>Second Paper Title: Another Great Research Work</h3>
-                    <div class="pub-authors"><b>Your Name</b>, Co-author 1, Co-author 2</div>
-                    <div class="pub-links">
-                        <a href="#">Preprint</a>
-                        <a href="#">[ pdf ]</a>
-                    </div>
+        <!-- 标签页 2：Experience -->
+        <div id="tab-experience" class="tab-content">
+            <section class="card">
+                <h2 class="section-title">Education & Experience</h2>
+                <p><b>University of Cambridge</b><br>PhD in Engineering, Michaelmas Term 2026 - Present</p>
+                <p><b>Shanghai Jiao Tong University</b><br>Master of Engineering, Graduated 2026</p>
+            </section>
+        </div>
+
+        <!-- 标签页 3：Beyond -->
+        <div id="tab-beyond" class="tab-content">
+            <section class="card">
+                <h2 class="section-title">Beyond Research</h2>
+                <p>In addition to my academic pursuits, I enjoy flying and maintaining an active lifestyle.</p>
+                <div class="gallery">
+                    <img src="images/life1.jpg" alt="Life Photo 1" onerror="this.src='https://via.placeholder.com/300x200'">
+                    <img src="images/life2.jpg" alt="Life Photo 2" onerror="this.src='https://via.placeholder.com/300x200'">
                 </div>
-            </div>
-        </section>
-        
-        <!-- Beyond Research 卡片 (生活/摄影展示) -->
-        <section class="card">
-            <h2 class="section-title">Beyond Research</h2>
-            <p>Beyond letting robots interact with the physical world, I love pushing my own body to its limits in the PHYSICAL WORLD too. 💪</p>
-            <div class="gallery">
-                <!-- 替换 src 为你的生活照链接 -->
-                <img src="https://via.placeholder.com/300x200" alt="Life Photo 1">
-                <img src="https://via.placeholder.com/300x200" alt="Life Photo 2">
-                <img src="https://via.placeholder.com/300x200" alt="Life Photo 3">
-                <img src="https://via.placeholder.com/300x200" alt="Life Photo 4">
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
 
     <!-- 右侧边栏 (News) -->
@@ -366,18 +380,39 @@
             <h2 class="section-title" style="margin-bottom: 15px;"><i class="fa-solid fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 5px;"></i> News</h2>
             
             <div class="news-item">
-                <span class="news-date">Jun 2026</span>
-                <div>Accepting PhD offer from NTU 🎉</div>
+                <span class="news-date">Mar 2026</span>
+                <div>Graduated from Shanghai Jiao Tong University 🎓</div>
             </div>
             
             <div class="news-item">
-                <span class="news-date">May 2026</span>
-                <div>Paper accepted to Awesome Conference!</div>
+                <span class="news-date">Jan 2026</span>
+                <div>Accepting PhD offer from the University of Cambridge 🎉</div>
             </div>
         </div>
     </aside>
 
 </div>
+
+<!-- 控制标签页切换的 JavaScript -->
+<script>
+    function switchTab(tabId, clickedElement) {
+        // 1. 移除所有导航按钮的 active 状态
+        document.querySelectorAll('.nav-item').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // 2. 为当前点击的按钮添加 active 状态
+        clickedElement.classList.add('active');
+
+        // 3. 隐藏所有的标签页内容
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.remove('active');
+        });
+
+        // 4. 显示对应的标签页内容
+        document.getElementById(tabId).classList.add('active');
+    }
+</script>
 
 </body>
 </html>
